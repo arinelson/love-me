@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 const Index = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [showAudioPopup, setShowAudioPopup] = useState(true);
 
   useEffect(() => {
@@ -18,11 +17,6 @@ const Index = () => {
 
   const handleWhatsAppClick = () => {
     window.open('https://wa.me/5582991799095', '_blank');
-  };
-
-  const handlePlayPause = () => {
-    setIsPlaying(!isPlaying);
-    setShowAudioPopup(false);
   };
 
   return (
@@ -65,30 +59,17 @@ const Index = () => {
           <span className="neon-text text-rose-300 block mt-2 transform transition-all duration-500 hover:scale-105">AMOR?</span>
         </h1>
 
-        {/* Audio Player */}
+        {/* Audio Section */}
         <div className="mt-8 relative">
-          <button
-            onClick={handlePlayPause}
-            className={`w-16 h-16 rounded-full transition-all duration-300 ${
-              isPlaying 
-                ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-[0_0_15px_rgba(168,85,247,0.5)] animate-pulse w-32" 
-                : "bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:shadow-[0_0_25px_rgba(168,85,247,0.4)]"
-            }`}
-          >
-            {isPlaying ? "Pause ⏸️" : "▶️"}
-          </button>
-          
-          {isPlaying && (
-            <div className="mt-4">
-              <iframe 
-                src="https://drive.google.com/file/d/1ZIFfpnwk9trRRrDxvkbdaBDzaCq14PVC/preview" 
-                width="300" 
-                height="100" 
-                allow="autoplay"
-                className="mx-auto rounded-lg shadow-lg"
-              ></iframe>
-            </div>
-          )}
+          <div className="mt-4">
+            <iframe 
+              src="https://drive.google.com/file/d/1ZIFfpnwk9trRRrDxvkbdaBDzaCq14PVC/preview" 
+              width="300" 
+              height="100" 
+              allow="autoplay"
+              className="mx-auto rounded-lg shadow-lg"
+            ></iframe>
+          </div>
 
           {/* Glowing Popup */}
           {showAudioPopup && (
