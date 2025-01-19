@@ -58,7 +58,7 @@ const Index = () => {
           <span className="absolute inset-0 bg-gradient-to-r from-green-400/30 to-green-600/30 group-hover:opacity-75 transition-opacity" />
           <span className="relative flex items-center gap-2">
             Me manda mensagem 
-            <span className="text-xl">✨</span>
+            <span className="text-xl">❤️</span>
           </span>
         </button>
       </div>
