@@ -7,6 +7,10 @@ const Index = () => {
     setIsVisible(true);
   }, []);
 
+  const handleWhatsAppClick = () => {
+    window.open('https://wa.me/5582991799095', '_blank');
+  };
+
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#1A1F2C] to-[#2C1A2F]">
       {/* Background Image with Overlay */}
@@ -31,6 +35,13 @@ const Index = () => {
           <span className="block mt-2">OU VAI TÁ LIVRE,</span>
           <span className="neon-text text-rose-300 block mt-2">AMOR?</span>
         </h1>
+
+        <button
+          onClick={handleWhatsAppClick}
+          className="mt-8 px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-full font-semibold transform transition-all duration-300 hover:scale-105 hover:shadow-[0_0_15px_rgba(34,197,94,0.5)] active:scale-95 animate-pulse"
+        >
+          Me manda mensagem ✨
+        </button>
       </div>
     </div>
   );
