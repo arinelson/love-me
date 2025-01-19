@@ -89,7 +89,7 @@ const Index = () => {
           <audio
             ref={audioRef}
             src="https://drive.google.com/uc?export=download&id=1ZIFfpnwk9trRRrDxvkbdaBDzaCq14PVC"
-            className="hidden"
+            preload="auto"
           />
 
           {/* Glowing Popup */}
