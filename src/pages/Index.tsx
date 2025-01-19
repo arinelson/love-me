@@ -77,13 +77,13 @@ const Index = () => {
         <div className="mt-8 relative">
           <button
             onClick={handlePlayPause}
-            className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 ${
+            className={`w-16 h-16 rounded-full transition-all duration-300 ${
               isPlaying 
-                ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-[0_0_15px_rgba(168,85,247,0.5)] animate-pulse" 
+                ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-[0_0_15px_rgba(168,85,247,0.5)] animate-pulse w-32" 
                 : "bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:shadow-[0_0_25px_rgba(168,85,247,0.4)]"
             }`}
           >
-            {isPlaying ? "Pause ⏸️" : "Play ▶️"}
+            {isPlaying ? "Pause ⏸️" : "▶️"}
           </button>
           
           <audio
