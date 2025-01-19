@@ -1,14 +1,36 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const Index = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [showAudioPopup, setShowAudioPopup] = useState(true);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     setIsVisible(true);
+    
+    // Hide audio popup after 10 seconds
+    const timeout = setTimeout(() => {
+      setShowAudioPopup(false);
+    }, 10000);
+
+    return () => clearTimeout(timeout);
   }, []);
 
   const handleWhatsAppClick = () => {
     window.open('https://wa.me/5582991799095', '_blank');
+  };
+
+  const handlePlayPause = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+      setShowAudioPopup(false);
+    }
   };
 
   return (
@@ -50,6 +72,34 @@ const Index = () => {
           <span className="block mt-2 transform transition-all duration-500 hover:scale-105">OU VAI TÁ LIVRE,</span>
           <span className="neon-text text-rose-300 block mt-2 transform transition-all duration-500 hover:scale-105">AMOR?</span>
         </h1>
+
+        {/* Audio Player */}
+        <div className="mt-8 relative">
+          <button
+            onClick={handlePlayPause}
+            className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 ${
+              isPlaying 
+                ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-[0_0_15px_rgba(168,85,247,0.5)] animate-pulse" 
+                : "bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:shadow-[0_0_25px_rgba(168,85,247,0.4)]"
+            }`}
+          >
+            {isPlaying ? "Pause ⏸️" : "Play ▶️"}
+          </button>
+          
+          <audio
+            ref={audioRef}
+            src="https://drive.google.com/uc?export=download&id=1ZIFfpnwk9trRRrDxvkbdaBDzaCq14PVC"
+            className="hidden"
+          />
+
+          {/* Glowing Popup */}
+          {showAudioPopup && (
+            <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-purple-600/90 to-pink-600/90 px-6 py-3 rounded-full text-white text-sm animate-bounce shadow-[0_0_15px_rgba(168,85,247,0.5)]">
+              Escute a mensagem! 🎵
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[8px] border-l-transparent border-t-[8px] border-t-pink-600/90 border-r-[8px] border-r-transparent" />
+            </div>
+          )}
+        </div>
 
         <button
           onClick={handleWhatsAppClick}
