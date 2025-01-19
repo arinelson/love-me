@@ -1,10 +1,9 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 
 const Index = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [showAudioPopup, setShowAudioPopup] = useState(true);
-  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     setIsVisible(true);
@@ -22,15 +21,8 @@ const Index = () => {
   };
 
   const handlePlayPause = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-      setShowAudioPopup(false);
-    }
+    setIsPlaying(!isPlaying);
+    setShowAudioPopup(false);
   };
 
   return (
@@ -86,11 +78,17 @@ const Index = () => {
             {isPlaying ? "Pause ⏸️" : "▶️"}
           </button>
           
-          <audio
-            ref={audioRef}
-            src="https://drive.google.com/uc?export=download&id=1ZIFfpnwk9trRRrDxvkbdaBDzaCq14PVC"
-            preload="auto"
-          />
+          {isPlaying && (
+            <div className="mt-4">
+              <iframe 
+                src="https://drive.google.com/file/d/1ZIFfpnwk9trRRrDxvkbdaBDzaCq14PVC/preview" 
+                width="300" 
+                height="100" 
+                allow="autoplay"
+                className="mx-auto rounded-lg shadow-lg"
+              ></iframe>
+            </div>
+          )}
 
           {/* Glowing Popup */}
           {showAudioPopup && (
